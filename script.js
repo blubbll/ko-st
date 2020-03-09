@@ -105,14 +105,17 @@ var viewModel = {
   newFusion: function() {
     {
       const food1 = viewModel.Foods().sample();
-      const food2 = viewModel.Foods().sample();
+      let food2 = viewModel.Foods().sample();
+      while (food2 === food1) {
+        food2 = viewModel.Foods().sample();
+      }
 
       viewModel.fusion(`&nbsp;
-      <food-fusion>
+      <h4>
         <food>${food1.emoji}</food>
         <food>${food2.emoji}</food>
        <info>(${food1.name}-${food2.name}</info>)
-      </food-fusion>
+      </h4>
      `);
     }
   }

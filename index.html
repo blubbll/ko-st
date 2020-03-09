@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Hello!</title>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- bs theme -->
+    <link
+      rel="stylesheet"
+      href="https://raw.githack.com/ChemaAlfonso/neumorph.scss/master/dist/css/light/neumorph-full.min.css"
+    />
+
+    <!-- knockout -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.5.1/knockout-latest.min.js"></script>
+
+    <!-- import the webpage's stylesheet -->
+    <link rel="stylesheet" href="/style.css" />
+
+    <!-- import the webpage's javascript file -->
+    <script src="/script.js" defer></script>
+  </head>
+  <body>
+    
+    
+    <h2>
+      Fusions-Essen:
+    </h2>
+     <div class="np-element">
+        <span data-bind="html: fusion"></span>
+    </div>
+    <br/>
+    <h2>
+      Essens-Emojis:
+    </h2>
+    <ul data-bind="foreach: { data: Foods, as: 'food' }" class="np-list">
+      <li class="np-list-element">
+        <span data-bind="text: food.emoji"></span> :
+        <span data-bind="text: food.name"></span>
+      </li>
+    </ul>
+  </body>
+</html>

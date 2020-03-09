@@ -101,24 +101,30 @@ var viewModel = {
     { emoji: "🥢", name: "Stäbchen" },
     { emoji: "🥡", name: "Essen to go" }
   ]),
-  fusion: ko.observable()
-};
+  fusion: ko.observable(),
+  newFusion: function() {
+    {
+      const food1 = viewModel.Foods().sample();
+      const food2 = viewModel.Foods().sample();
 
-Array.prototype.sample = function() {
-  return this[Math.floor(Math.random() * this.length)];
-};
-
-ko.applyBindings(viewModel);
-
-{
-  const food1 = viewModel.Foods().sample();
-  const food2 = viewModel.Foods().sample();
-
-  viewModel.fusion(`&nbsp;
+      viewModel.fusion(`&nbsp;
       <food-fusion>
         <food>${food1.emoji}</food>
         <food>${food2.emoji}</food>
        <info>(${food1.name}-${food2.name}</info>)
       </food-fusion>
      `);
-}
+    }
+  }
+};
+
+//extend array
+Array.prototype.sample = function() {
+  return this[Math.floor(Math.random() * this.length)];
+};
+
+//go
+viewModel.newFusion();
+
+//bindings
+ko.applyBindings(viewModel);

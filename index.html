@@ -26,10 +26,13 @@
       Fusions-Essen:
     </h2>
     <div class="d-flex flex-row justify-content-around">
-      <food-box class="np-bg-light" data-bind="html:foodEmoji"></food-box>
+      <food-box
+        class="np-bg-light d-flex justify-content-center align-items-center"
+        data-bind="html:Food.emoji"
+      ></food-box>
       <food-name
         class="w-100 d-flex np-element align-items-center np-text-light np-bg-info justify-content-center"
-        data-bind="text: foodName"
+        data-bind="text: Food.name"
       ></food-name>
       <button class="np-btn" data-bind="click: newFusion">Neue Kost?</button>
     </div>
@@ -38,12 +41,15 @@
     <h2>
       Essens-Emojis:
     </h2>
-    <ul data-bind="foreach: { data: Foods, as: 'food' }" class="np-list">
-      <li class="np-list-element">
+    <ul data-bind="foreach: { data: Food.list, as: 'food' }" class="np-list">
+      <li class="np-list-element" data-bind="visible: $index() < 5 || $parent.Food.listExpanded()">
         <span data-bind="text: food.emoji"></span> :
         <span data-bind="text: food.name"></span>
+      </li>
+      <li data-bind="visible: $index() === 5">
+        Und <span data-bind="text: $parent.Food.list().length - $index()"></span> weitere...
+        <button class="np-btn">anzeigen</button>
       </li>
     </ul>
   </body>
 </html>
-B

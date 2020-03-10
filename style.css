@@ -2,7 +2,7 @@ food-box {
   font-size: 3rem;
   width: 6rem;
 }
-food:first-of-type {
+food:first-child {
   opacity: 0.5;
   position: absolute;
 }

@@ -12,39 +12,34 @@ Array.prototype.sample = function() {
 };
 
 const viewModel = {
-  Foods: ko.observableArray(),
-  foodEmoji: ko.observable(),
-  foodName: ko.observable(),
+  Food: {
+    list: ko.observableArray(),
+    listExpanded: ko.observable(false),
+    emoji: ko.observable(),
+    name: ko.observable()
+  },
   newFusion: () => {
     {
-      const food1 = viewModel.Foods().sample();
-      let food2 = viewModel.Foods().sample();
+      const food1 = viewModel.Food.list().sample();
+      let food2 = viewModel.Food.list().sample();
       while (food2 === food1) {
-        food2 = viewModel.Foods().sample();
+        food2 = viewModel.Food.list().sample();
       }
 
-      viewModel.foodEmoji(`
+      viewModel.Food.emoji(`
         <food>${food1.emoji}</food>
         <food>${food2.emoji}</food>
       `);
 
-      viewModel.foodName(`(${food1.name}-${food2.name})`);
+      viewModel.Food.name(`(${food1.name}-${food2.name})`);
 
-      document.title = viewModel.foodName();
-
-      {
-        const size = [];
-        for (let food of $$("food-box>food"))
-          size.push(food.offsetWidth), size.push(food.offsetHeight);
-
-        $("food-box").style.width = `${Math.max(...size)}px`;
-      }
+      document.title = viewModel.Food.name();
     }
   }
 };
 
 //data
-viewModel.Foods = ko.observableArray([
+viewModel.Food.list = ko.observableArray([
   { emoji: "🍏", name: "Grüner Apfel" },
   { emoji: "🍎", name: "Roter Apfel" },
   { emoji: "🍐", name: "Birne" },

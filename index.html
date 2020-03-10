@@ -18,9 +18,6 @@
     <!-- import the webpage's stylesheet -->
     <link rel="stylesheet" href="/style.css" />
 
-    <!--responsive fonts -->
-<link rel="stylesheet" href="https://raw.githack.com/sboriskirov/fluiditype/master/fluidtype.css"/>
-    
     <!-- import the webpage's javascript file -->
     <script src="/script.js" defer></script>
   </head>
@@ -28,11 +25,13 @@
     <h2>
       Fusions-Essen:
     </h2>
-    <div class="d-flex flex-row">
-      <button class="np-btn" data-bind="click: newFusion">Neue Kost!</button>
-      <div class="np-element">
-        <span data-bind="html: fusion"></span>
-      </div>
+    <div class="d-flex flex-row justify-content-around">
+      <food-box class="np-bg-light" data-bind="html:foodEmoji"></food-box>
+      <food-name
+        class="w-100 d-flex np-element align-items-center np-text-light np-bg-info justify-content-center"
+        data-bind="text: foodName"
+      ></food-name>
+      <button class="np-btn" data-bind="click: newFusion">Neue Kost?</button>
     </div>
 
     <br />
@@ -47,3 +46,4 @@
     </ul>
   </body>
 </html>
+B

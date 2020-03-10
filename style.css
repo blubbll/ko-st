@@ -1,12 +1,14 @@
-food {
+food-box {
+  font-size: 3rem;
+  width: 6rem;
+}
+food:first-of-type {
+  opacity: 0.5;
   position: absolute;
 }
-food:not(:first-child) {
-  opacity: 0.5;
-}
-info {
-  padding-left: 5rem;
+food-name {
   word-break: break-word;
+  font-size: 1rem;
 }
 
 body {

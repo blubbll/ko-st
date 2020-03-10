@@ -22,58 +22,68 @@
     <script src="/script.js" defer></script>
   </head>
   <body>
-    <h2>
-      Fusions-Essen:
-    </h2>
-    <div class="d-flex flex-row justify-content-around">
-      <food-box
-        class="np-bg-light d-flex justify-content-center align-items-center"
-        data-bind="html:Food.emoji"
-      ></food-box>
-      <food-name
-        class="w-100 d-flex np-element align-items-center np-text-light np-bg-info justify-content-center"
-        data-bind="text: Food.name"
-      ></food-name>
-      <button class="np-btn" data-bind="click: newFusion">Neue Kost?</button>
-    </div>
+    <wrap class="d-flex flex-column algin-items-center">
+      <h3>
+        Fusions-Essen:
+      </h3>
+      <div class="w-100 d-flex flex-row justify-content-around">
+        <food-box
+          class="np-bg-light d-flex justify-content-center align-items-center"
+          data-bind="html:Food.emoji"
+        ></food-box>
+        <food-name
+          class="w-100 d-flex np-element align-items-center np-text-light np-bg-info justify-content-center"
+          data-bind="text: Food.name"
+        ></food-name>
+        <button class="np-btn" data-bind="click: newFusion">Neue Kost?</button>
+      </div>
 
-    <br />
-    <h2>
-      Essens-Emojis:
-    </h2>
-    <food-list class="d-flex flex-column border p-2">
-      <ul data-bind="foreach: { data: Food.list, as: 'food' }" class="np-list">
-        <li
-          class="np-list-element"
-          data-bind="visible: $index() < 5 || $parent.Food.listExpanded()"
+      <hr />
+      <h3>
+        Essens-Emojis:
+      </h3>
+      <food-list class="d-flex flex-column border p-2">
+        <ul
+          data-bind="foreach: { data: Food.list, as: 'food' }"
+          class="np-list"
         >
-          <span data-bind="text: food.emoji"></span> :
-          <span data-bind="text: food.name"></span>
-        </li>
-      </ul>
-      <div data-bind="visible: !Food.listExpanded()">
-        Und
-        <span data-bind="text: Food.list().length - 5"></span>
-        weitere...
-        <button class="np-btn" data-bind="click: toggleFoodlist">
-          anzeigen
-        </button>
-      </div>
-      <div data-bind="visible: !Food.listExpanded()">
-        Insgesamt
-        <span data-bind="text: Food.list().length"></span>
-        Elemente
-        <button class="np-btn" data-bind="click: toggleFoodlist">
-          (wieder zuklappen)
-        </button>
-      </div>
-    </food-list>
-
-    <button
-      class="np-btn"
-      data-bind="visible: Food.listExpanded(), click: toggleFoodlist"
-    >
-      Liste wieder zuklappen
-    </button>
+          <li
+            class="np-list-element"
+            data-bind="visible: $index() < 5 || $parent.Food.listExpanded()"
+          >
+            <span data-bind="text: food.emoji"></span> :
+            <span data-bind="text: food.name"></span>
+          </li>
+        </ul>
+        <div
+          data-bind="visible: !Food.listExpanded()"
+          class="d-flex align-items-center"
+        >
+          Und
+          <span class="px-1" data-bind="text: Food.list().length - 5"></span>
+          weitere...
+          <button
+            class="np-btn np-bg-dark np-text-light flex-grow-1"
+            data-bind="click: toggleFoodlist"
+          >
+            anzeigen
+          </button>
+        </div>
+        <div
+          data-bind="visible: Food.listExpanded()"
+          class="d-flex align-items-center"
+        >
+          Insgesamt
+          <span class="px-1" data-bind="text: Food.list().length"></span>
+          Elemente.
+          <button
+            class="np-btn np-bg-dark np-text-light flex-grow-1"
+            data-bind="click: toggleFoodlist"
+          >
+            (wieder zuklappen)
+          </button>
+        </div>
+      </food-list>
+    </wrap>
   </body>
 </html>

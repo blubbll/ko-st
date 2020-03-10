@@ -11,6 +11,17 @@ food-name {
   font-size: 1rem;
 }
 
+food-list>ul{
+  height: 26vh;
+  overflow-y: auto;
+}
+
 body {
   margin: 5vw 15vw;
+}
+
+
+/* fix */
+.np-list-element{
+  height: auto!important;
 }

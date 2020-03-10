@@ -3,7 +3,7 @@ const { ko } = window;
 const $ = document.querySelector.bind(document);
 const $$ = document.querySelectorAll.bind(document);
 
-window.onerror = e => console.warn(JSON.stringify(e));
+//window.onerror = e => console.warn(JSON.stringify(e), () => {throw(e)});
 
 //extend array to return random entry
 Array.prototype.sample = function() {
@@ -17,6 +17,9 @@ const viewModel = {
     listExpanded: ko.observable(false),
     emoji: ko.observable(),
     name: ko.observable()
+  },
+  toggleFoodlist: () =>{
+    viewModel.Food.listExpanded(!viewModel.Food.listExpanded())
   },
   newFusion: () => {
     {

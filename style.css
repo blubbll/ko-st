@@ -3,31 +3,32 @@ food-box {
   width: 8rem;
 }
 food:first-child {
-  opacity: 0.5;
+  opacity: 0.75;
   position: absolute;
+  mix-blend-mode: multiply;
 }
 food-name {
   word-break: break-word;
   font-size: 1rem;
 }
 
-food-list>ul{
-  height: 27vh;
+food-list > ul {
+  height: 19.5vh;
   overflow-y: auto;
 }
 
 wrap {
-     margin: 3rem auto;
-    padding: 1rem;
-    max-width: 50rem;
+  margin: 3rem auto;
+  padding: 1rem;
+  max-width: 50rem;
 }
 
 /* fix for ko + bs4 */
-[style="display: none;"]{
-  display: none!important;
+[style="display: none;"] {
+  display: none !important;
 }
 
 /* fix for neumorph.css*/
-.np-list-element{
-  height: auto!important;
+.np-list-element {
+  height: auto !important;
 }

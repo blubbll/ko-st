@@ -5,27 +5,22 @@
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-
     <!-- bs theme -->
     <link
       rel="stylesheet"
       href="https://raw.githack.com/ChemaAlfonso/neumorph.scss/master/dist/css/light/neumorph-full.min.css"
     />
-
     <!-- knockout -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.5.1/knockout-latest.min.js"></script>
-
     <!-- import the webpage's stylesheet -->
     <link rel="stylesheet" href="/style.css" />
-
     <!-- import the webpage's javascript file -->
     <script src="/script.js" defer></script>
   </head>
+
   <body>
     <wrap class="d-flex flex-column algin-items-center">
-      <h3>
-        Fusions-Essen:
-      </h3>
+      <h3>Fusions-Essen:</h3>
       <div class="w-100 d-flex flex-row justify-content-around border p-2">
         <food-box
           class="np-bg-light d-flex justify-content-center align-items-center"
@@ -37,11 +32,28 @@
         ></food-name>
         <button class="np-btn" data-bind="click: newFusion">Neue Kost?</button>
       </div>
-
-      <hr />
-      <h3>
-        Essens-Emojis:
-      </h3>
+      <!----------->
+      <br -------- />
+      <!----------->
+      <h3>Lieblingsessen:</h3>
+      <p>Dein Lieblinsessen: <span data-bind="text: Food.fav"></span></p>
+      <div class="np-form-group">
+        <select
+          name="np-option"
+          id="np-option"
+          class="np-form-element"
+          data-bind="foreach: { data: Food.list, as: 'food' }, value: Food.fav"
+        >
+          <option value="" data-bind="visible: $index === 0"
+            >Bitte Essen auswählen</option
+          >
+          <option data-bind="text: food.name, value: food.emoji"></option>
+        </select>
+      </div>
+      <!----------->
+      <br -------- />
+      <!----------->
+      <h3>Essens-Emojis:</h3>
       <food-list class="d-flex flex-column border p-2">
         <ul
           data-bind="foreach: { data: Food.list, as: 'food' }"
@@ -49,41 +61,46 @@
         >
           <li
             class="np-list-element"
-            data-bind="visible: $index() < 5 || $parent.Food.listExpanded()"
+            data-bind="visible: $index() < 3 || $parent.Food.listExpanded()"
           >
             <span data-bind="text: food.emoji"></span> :
             <span data-bind="text: food.name"></span>
           </li>
         </ul>
-        <div
-          data-bind="visible: !Food.listExpanded()"
-          class="d-flex align-items-center"
-        >
-          Und
-          <span class="px-1" data-bind="text: Food.list().length - 5"></span>
-          weitere...
-          <button
-            class="np-btn np-bg-dark np-text-light flex-grow-1"
-            data-bind="click: toggleFoodlist"
+        <food-list-controls data-bind="visible: Food.list().length > 3">
+          <div
+            data-bind="visible: !Food.listExpanded()"
+            class="d-flex align-items-center"
           >
-            anzeigen
-          </button>
-        </div>
-        <div
-          data-bind="visible: Food.listExpanded()"
-          class="d-flex align-items-center"
-        >
-          Insgesamt
-          <span class="px-1" data-bind="text: Food.list().length"></span>
-          Elemente.
-          <button
-            class="np-btn np-bg-dark np-text-light flex-grow-1"
-            data-bind="click: toggleFoodlist"
+            &
+            <span class="px-1" data-bind="text: Food.list().length - 3"></span>
+            weitere...
+            <button
+              class="np-btn np-bg-dark np-text-light flex-grow-1"
+              data-bind="click: toggleFoodlist"
+            >
+              anzeigen
+            </button>
+          </div>
+          <div
+            data-bind="visible: Food.listExpanded()"
+            class="d-flex align-items-center"
           >
-            (wieder zuklappen)
-          </button>
-        </div>
+            (
+            <span class="px-1" data-bind="text: Food.list().length"></span>
+            Elemente).
+            <button
+              class="np-btn np-bg-dark np-text-light flex-grow-1"
+              data-bind="click: toggleFoodlist"
+            >
+              (wieder zuklappen)
+            </button>
+          </div>
+        </food-list-controls>
       </food-list>
+      <!----------->
+      <br -------- />
+      <!----------->
     </wrap>
   </body>
 </html>

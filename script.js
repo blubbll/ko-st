@@ -16,10 +16,12 @@ const viewModel = {
     list: ko.observableArray(),
     listExpanded: ko.observable(false),
     emoji: ko.observable(),
-    name: ko.observable()
+    name: ko.observable(),
+    fav: ko.observable(),
   },
-  toggleFoodlist: () =>{
-    viewModel.Food.listExpanded(!viewModel.Food.listExpanded())
+  
+  toggleFoodlist: () => {
+    viewModel.Food.listExpanded(!viewModel.Food.listExpanded());
   },
   newFusion: () => {
     {
@@ -41,6 +43,9 @@ const viewModel = {
   }
 };
 
+/*viewModel.Food.fav.subscribe((val)=> {
+  val !== 0 && []
+}, this);*/
 //data
 viewModel.Food.list = ko.observableArray([
   { emoji: "🍏", name: "Grüner Apfel" },
